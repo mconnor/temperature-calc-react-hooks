@@ -12,7 +12,6 @@ function toFahrenheit(celsius) {
 }
 
 function tryConvert(temperature, convert) {
-	console.log('tryConvert ' + temperature);
 	const input = parseFloat(temperature);
 	if (Number.isNaN(input)) {
 		return '';
@@ -23,8 +22,7 @@ function tryConvert(temperature, convert) {
 }
 
 function Calculator() {
-	//const [scale, setScale] = useState('c')
-	// const [temperature, setTemp] = useState('');
+	
 	const [ scale, setScale ] = useState('');
 
 	const [ celsius, setCelsius ] = useState('');
@@ -45,12 +43,6 @@ function Calculator() {
 		[ fahrenheit ]
 	);
 
-	useEffect(
-		() => {
-			return console.log('swtich to ' + scale);
-		},
-		[ scale ]
-	);
 
 	const handleCelsiusChange = (val) => {
 		setScale('c');
@@ -64,11 +56,13 @@ function Calculator() {
 
 	return (
 		<div>
-			<h1>Convert Temperatures</h1>
+			<h1>Convert Temperatures - Simple React Hooks Demo</h1>
 			<TemperatureInput scale={'c'} temperature={celsius} onTemperatureChange={handleCelsiusChange} />
 			<TemperatureInput scale={'f'} temperature={fahrenheit} onTemperatureChange={handleFahrenheitChange} />
 			<BoilingVerdict celsius={parseFloat(celsius)} />
+            <p>Code by <a href="mailto:mike@cloudswing.info">Mike Connor</a> available on <a href="https://github.com/mconnor/temperature-calc-react-hooks">GitHub</a></p>
 		</div>
+        
 	);
 }
 
