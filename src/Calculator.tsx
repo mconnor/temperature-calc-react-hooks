@@ -3,37 +3,27 @@ import TemperatureInput from './TemperatureInput';
 import BoilingVerdict from './BoilingVerdict';
 import './App.css';
 
-function toCelsius(fahrenheit: number): number {
-    return (fahrenheit - 32) * 5 / 9;
-}
 
-function toFahrenheit(celsius: number): number {
-    return celsius * 9 / 5 + 32;
-}
 
-function tryConvert(temperature: number, convert: any) {
-    const output = convert(temperature);
-    const rounded = Math.round(output * 1000) / 1000;
-    return rounded;
-}
+type convertFunc = (t: number) => number;
+
+const toCelsius = (fahrenheit: number): number => (fahrenheit - 32) * 5 / 9;
+const toFahrenheit = (celsius: number): number => celsius * 9 / 5 + 32;
+
+const  convertFunc = (temperature: number, _convert: convertFunc) => 
+    Math.round(_convert(temperature) * 1000) /1000;
 
 const Calculator: React.FC = () => {
-   // const [scale, setScale] = useState('c');
-
     const [celsius, setCelsius] = useState();
     const [fahrenheit, setFahrenheit] = useState();
 
     useEffect(
-        () => {
-            return setFahrenheit(tryConvert(celsius, toFahrenheit));
-        },
+        () => setFahrenheit(convertFunc(celsius, toFahrenheit)),
         [celsius]
     );
 
     useEffect(
-        () => {
-            return setCelsius(tryConvert(fahrenheit, toCelsius));
-        },
+        () => setCelsius(convertFunc(fahrenheit, toCelsius)),
         [fahrenheit]
     );
 
