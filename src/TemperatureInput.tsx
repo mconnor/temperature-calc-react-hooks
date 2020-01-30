@@ -17,11 +17,13 @@ const scaleNames =  {
 
 const TemperatureInput = ({ temperature, onTemperatureChange, scale }: MyDumbProps) => {
     let _scale: string = (scale === 'c' ? scaleNames[scale] : scaleNames[scale]);
+   
     return (
         <div>
             <fieldset>
                 <legend>Enter temperature in {_scale}:</legend>
                 <input
+                    placeholder="enter temperature"
                     value={temperature}
                     onChange={(e) => onTemperatureChange(parseInt(e.target.value))}
                     type="number" />

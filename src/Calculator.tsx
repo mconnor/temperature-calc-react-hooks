@@ -14,7 +14,6 @@ const  convertFunc = (temperature: number, _convert: convertFunc) =>
 const Calculator: React.FC = () => {
     const [celsius, setCelsius] = useState();
     const [fahrenheit, setFahrenheit] = useState();
-
     useEffect(
         () => setFahrenheit(convertFunc(celsius, toFahrenheit)),
         [celsius]
