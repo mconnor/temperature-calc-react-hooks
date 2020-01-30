@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TemperatureInput from './TemperatureInput';
 import BoilingVerdict from './BoilingVerdict';
-import './App.css';
-
-
+import './Calculator.css';
 
 type convertFunc = (t: number) => number;
 
@@ -11,7 +9,7 @@ const toCelsius = (fahrenheit: number): number => (fahrenheit - 32) * 5 / 9;
 const toFahrenheit = (celsius: number): number => celsius * 9 / 5 + 32;
 
 const  convertFunc = (temperature: number, _convert: convertFunc) => 
-    Math.round(_convert(temperature) * 1000) /1000;
+    Math.round(_convert(temperature));
 
 const Calculator: React.FC = () => {
     const [celsius, setCelsius] = useState();
