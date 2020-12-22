@@ -1,18 +1,24 @@
 import React from 'react';
-
-
 type MyDumbProps = {
-    celsius: number;
+    celsius?: number;
 }
 
-const BoilingVerdict: React.FC<MyDumbProps> = ({ celsius }) => {
-	if (celsius >= 100) {
-		return <p>The water would boil.</p>;
-	} else if (celsius < 100 && celsius > 0) {
-		return <p>The water would not boil.</p>;
-	} else {
-		return <p>The water would freeze.</p>;
-	}
-};
+const getMsg = (c: number) => {
+    if (c >= 100) {
+        return 'The water would boil.'
+    } else if (c < 100 && c > 0) {
+        return 'The water would not boil.'
+    }
+    return 'The water would freeze.'
 
-export default BoilingVerdict;
+}
+
+export default function BoilingVerdict({ celsius }: MyDumbProps): JSX.Element {
+
+    return (
+        <>
+            {  celsius && <p>{getMsg(celsius)}</p>}
+        </>
+    )
+
+}
